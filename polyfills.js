@@ -310,8 +310,8 @@ function patch (fs) {
     return function (target, options) {
       var stats = options ? orig.call(fs, target, options)
         : orig.call(fs, target)
-      if (stats.uid < 0) stats.uid += 0x100000000
-      if (stats.gid < 0) stats.gid += 0x100000000
+      if (stats && stats.uid < 0) stats.uid += 0x100000000
+      if (stats && stats.gid < 0) stats.gid += 0x100000000
       return stats;
     }
   }
